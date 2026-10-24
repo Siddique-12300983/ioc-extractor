@@ -1,0 +1,29 @@
+Harbourline Freight - Threat Intel Note (SAMPLE, fictional)
+===========================================================
+
+Summary
+-------
+During triage we observed a phishing campaign delivering a loader. The messages
+came from accounts-payable[at]harbour1ine-freight[.]com and linked to a fake
+invoice portal at hxxps://invoice-harbourline[.]com/login.
+
+Network indicators
+------------------
+The loader beaconed to 203.0.113.45 and 198[.]51[.]100[.]23 over HTTPS, and
+resolved cdn-update[.]net before pulling a second stage from
+hxxp://185.220.101.9/gate.php. A secondary C2 used the IPv6 address
+2001:db8:dead:beef::1337.
+
+Do not block these internal hosts seen in the same logs:
+10.10.10.10, 192.168.1.50, 127.0.0.1
+
+Host indicators
+---------------
+Dropped file "invoice_scan.exe":
+  MD5    44d88612fea8a8f36de82e1278abb02f
+  SHA1   3395856ce81f2b7382dee72602f798b642f14140
+  SHA256 275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f
+
+The loader exploited CVE-2024-3400 and attempted CVE-2023-23397 for persistence.
+
+Contact the reporter at soc-analyst@example.com with questions.
